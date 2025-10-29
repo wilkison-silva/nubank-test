@@ -35,6 +35,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -57,4 +58,10 @@ dependencies {
 
     // Koin for Android
     implementation(libs.koin.androidx.compose)
+    //gson
+    implementation(libs.gson)
+    //retrofit
+    implementation(libs.retrofit)
+    implementation(libs.logging.interceptor)
+    implementation(libs.converter.gson)
 }
