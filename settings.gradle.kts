@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Nubank Test"
 include(":app")
-include(":Link Shortener")
+include(":link_shortener")

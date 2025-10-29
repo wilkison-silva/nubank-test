@@ -1,7 +1,7 @@
 package br.com.wms.nubanktest
 
 import android.app.Application
-import br.com.wms.linkshortener.di.loadLinkShortenerModules
+import br.com.wms.link_shortener.di.loadLinkShortenerModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
