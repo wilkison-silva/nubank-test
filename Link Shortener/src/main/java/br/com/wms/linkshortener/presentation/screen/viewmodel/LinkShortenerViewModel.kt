@@ -4,6 +4,8 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.wms.linkshortener.domain.usecase.create_alias.CreateAliasUseCase
+import br.com.wms.linkshortener.presentation.extensions.toShortenedLinkView
+import br.com.wms.linkshortener.presentation.model.ShortenedLinkView
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -46,7 +48,7 @@ internal class LinkShortenerViewModel(
                 }
                 is CreateAliasUseCase.Result.Success -> {
                     val aliasList = _uiState.value.aliasList.toMutableList().apply {
-                        add(result.alias)
+                        add(result.shortenedLink.toShortenedLinkView())
                     }
                     _uiState.value = _uiState.value.copy(
                         inputText = "",
@@ -80,6 +82,6 @@ internal class LinkShortenerViewModel(
     data class UiState(
         val isLoading: Boolean = false,
         val inputText: String = "",
-        val aliasList: List<String> = listOf(),
+        val aliasList: List<ShortenedLinkView> = listOf(),
     )
 }

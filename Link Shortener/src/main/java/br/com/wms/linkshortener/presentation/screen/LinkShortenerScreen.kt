@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -146,25 +145,43 @@ private fun ScreenContent(
                 items(
                     count = uiState.aliasList.count(),
                     key = { index ->
-                        uiState.aliasList[index]
+                        index
                     },
                     itemContent = { index ->
-                        Row(
-                            modifier = Modifier.padding(horizontal = 24.dp),
-                            horizontalArrangement = Arrangement.spacedBy(24.dp),
-                        ) {
-                            Text(
-                                modifier = Modifier.weight(1f),
-                                text = uiState.aliasList[index],
-                                style = MaterialTheme.typography.titleLarge,
-                                fontWeight = FontWeight.Bold,
-                            )
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_outline_arrow_forward_ios_24),
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.onSurface,
-                            )
+                        Column {
+                            Row(
+                                modifier = Modifier.padding(horizontal = 24.dp),
+                                horizontalArrangement = Arrangement.spacedBy(24.dp),
+                            ) {
+                                Text(
+                                    modifier = Modifier.weight(1f),
+                                    text = uiState.aliasList[index].alias,
+                                    style = MaterialTheme.typography.titleLarge,
+                                    fontWeight = FontWeight.Bold,
+                                )
+                                Icon(
+                                    painter = painterResource(id = R.drawable.ic_outline_arrow_forward_ios_24),
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.onSurface,
+                                )
+                            }
                         }
+                        Text(
+                            modifier = Modifier
+                                .padding(horizontal = 24.dp)
+                                .fillMaxWidth(),
+                            text = uiState.aliasList[index].originalUrl,
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Medium,
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(horizontal = 24.dp)
+                                .fillMaxWidth(),
+                            text = uiState.aliasList[index].short,
+                            style = MaterialTheme.typography.titleSmall,
+                            fontWeight = FontWeight.Light,
+                        )
                         if (index < uiState.aliasList.lastIndex) {
                             HorizontalDivider(
                                 modifier = Modifier.fillMaxWidth(),
