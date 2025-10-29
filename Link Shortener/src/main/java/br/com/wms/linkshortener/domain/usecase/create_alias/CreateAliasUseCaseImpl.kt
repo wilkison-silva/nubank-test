@@ -11,7 +11,8 @@ internal class CreateAliasUseCaseImpl(
             val request = CreateAliasRequest(url)
             val response = repository.createAlias(request)
             CreateAliasUseCase.Result.Success(alias = response.urlAlias)
-        } catch (_: Exception) {
+        } catch (exception: Exception) {
+            exception.printStackTrace()
             CreateAliasUseCase.Result.Error
         }
     }

@@ -6,7 +6,7 @@ internal data class CreateAliasResponse(
     @SerializedName("alias")
     val urlAlias: String,
     @SerializedName("_links")
-    val links: List<String>
+    val links: Links
 ) {
     data class Links(
         @SerializedName("self")

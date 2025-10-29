@@ -18,13 +18,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 private object LinkShortenerModule {
     val data =
         module {
-            val baseUrl = "https://api.adviceslip.com"
+            val baseUrl = "https://url-shortener-server.onrender.com"
 
             single<OkHttpClient> {
                 val client = OkHttpClient.Builder()
                 if (BuildConfig.DEBUG) {
                     val logging = HttpLoggingInterceptor()
-                    logging.setLevel(HttpLoggingInterceptor.Level.BASIC)
+                    logging.setLevel(HttpLoggingInterceptor.Level.BODY)
                     client.addInterceptor(logging)
                 }
                 client.build()
