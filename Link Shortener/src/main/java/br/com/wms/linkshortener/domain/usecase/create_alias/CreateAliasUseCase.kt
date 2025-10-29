@@ -6,7 +6,10 @@ internal interface CreateAliasUseCase {
     suspend operator fun invoke(url: String): Result
 
     sealed class Result {
-        data class Success(val shortenedLink: ShortenedLink) : Result()
+        data class Success(
+            val shortenedLink: ShortenedLink,
+        ) : Result()
+
         data object Error : Result()
     }
 }

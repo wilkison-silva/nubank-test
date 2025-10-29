@@ -1,0 +1,6 @@
+[*.{kt,kts}]
+
+# Desativa a regra de nomenclatura de função
+ktlint_standard_function-naming = disabled
+# Desativa a regra para permitir underscores em nomes de pacote
+ktlint_standard_package-name = disabled

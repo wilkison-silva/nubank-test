@@ -6,12 +6,12 @@ internal data class CreateAliasDTO(
     @SerializedName("alias")
     val urlAlias: String,
     @SerializedName("_links")
-    val links: Links
+    val links: Links,
 ) {
     data class Links(
         @SerializedName("self")
         val originalUrl: String,
         @SerializedName("short")
-        val short: String
+        val short: String,
     )
 }

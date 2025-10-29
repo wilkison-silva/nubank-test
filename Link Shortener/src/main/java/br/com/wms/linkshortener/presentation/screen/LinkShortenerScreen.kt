@@ -41,9 +41,7 @@ fun AddLinkShortenerScreen() {
 }
 
 @Composable
-private fun LinkShortenerScreen(
-    viewModel: LinkShortenerViewModel = koinViewModel(),
-) {
+private fun LinkShortenerScreen(viewModel: LinkShortenerViewModel = koinViewModel()) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
     val snackBarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
@@ -51,18 +49,16 @@ private fun LinkShortenerScreen(
     ObserveEvents(events = viewModel.events) { event ->
         when (event) {
             is LinkShortenerViewModel.Event.AliasError -> {
-
             }
 
             LinkShortenerViewModel.Event.OpenBrowser -> {
-
             }
 
             LinkShortenerViewModel.Event.ShortenerLinkError -> {
                 scope.launch {
                     snackBarHostState.showSnackbar(
                         message = "Erro ao criar url reduzida!",
-                        duration = SnackbarDuration.Short
+                        duration = SnackbarDuration.Short,
                     )
                 }
             }
@@ -86,7 +82,7 @@ private fun ScreenContent(
         modifier = Modifier.fillMaxSize(),
         snackbarHost = {
             SnackbarHost(snackBarHostState)
-        }
+        },
     ) { paddingValues ->
         Column(
             modifier =
@@ -101,8 +97,7 @@ private fun ScreenContent(
                         .padding(
                             horizontal = 24.dp,
                             vertical = 12.dp,
-                        )
-                        .fillMaxWidth()
+                        ).fillMaxWidth()
                         .height(IntrinsicSize.Max),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(24.dp),
@@ -167,17 +162,19 @@ private fun ScreenContent(
                             }
                         }
                         Text(
-                            modifier = Modifier
-                                .padding(horizontal = 24.dp)
-                                .fillMaxWidth(),
+                            modifier =
+                                Modifier
+                                    .padding(horizontal = 24.dp)
+                                    .fillMaxWidth(),
                             text = uiState.aliasList[index].originalUrl,
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Medium,
                         )
                         Text(
-                            modifier = Modifier
-                                .padding(horizontal = 24.dp)
-                                .fillMaxWidth(),
+                            modifier =
+                                Modifier
+                                    .padding(horizontal = 24.dp)
+                                    .fillMaxWidth(),
                             text = uiState.aliasList[index].short,
                             style = MaterialTheme.typography.titleSmall,
                             fontWeight = FontWeight.Light,

@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 internal class LinkShortenerViewModel(
     private val createAliasUseCase: CreateAliasUseCase,
 ) : ViewModel() {
-
     private val _uiState = MutableStateFlow(UiState())
     val uiState = _uiState.asStateFlow()
 
@@ -29,13 +28,13 @@ internal class LinkShortenerViewModel(
             }
 
             is Actions.OpenAliasClick -> {
-
             }
 
             is Actions.ChangedInputText -> {
-                _uiState.value = _uiState.value.copy(
-                    inputText = action.text
-                )
+                _uiState.value =
+                    _uiState.value.copy(
+                        inputText = action.text,
+                    )
             }
         }
     }
@@ -46,14 +45,17 @@ internal class LinkShortenerViewModel(
                 CreateAliasUseCase.Result.Error -> {
                     sendEvent(Event.ShortenerLinkError)
                 }
+
                 is CreateAliasUseCase.Result.Success -> {
-                    val aliasList = _uiState.value.aliasList.toMutableList().apply {
-                        add(result.shortenedLink.toShortenedLinkView())
-                    }
-                    _uiState.value = _uiState.value.copy(
-                        inputText = "",
-                        aliasList = aliasList
-                    )
+                    val aliasList =
+                        _uiState.value.aliasList.toMutableList().apply {
+                            add(result.shortenedLink.toShortenedLinkView())
+                        }
+                    _uiState.value =
+                        _uiState.value.copy(
+                            inputText = "",
+                            aliasList = aliasList,
+                        )
                 }
             }
         }
@@ -67,14 +69,22 @@ internal class LinkShortenerViewModel(
 
     sealed class Actions {
         data object GenerateAliasClick : Actions()
-        data class OpenAliasClick(val aliasUrl: String) : Actions()
-        data class ChangedInputText(val text: String) : Actions()
+
+        data class OpenAliasClick(
+            val aliasUrl: String,
+        ) : Actions()
+
+        data class ChangedInputText(
+            val text: String,
+        ) : Actions()
     }
 
     sealed class Event {
         data object OpenBrowser : Event()
 
-        data class AliasError(@StringRes val errorMessage: Int) : Event()
+        data class AliasError(
+            @StringRes val errorMessage: Int,
+        ) : Event()
 
         data object ShortenerLinkError : Event()
     }

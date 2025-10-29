@@ -30,7 +30,8 @@ private object LinkShortenerModule {
                 client.build()
             }
             single<Retrofit> {
-                Retrofit.Builder()
+                Retrofit
+                    .Builder()
                     .baseUrl(baseUrl)
                     .client(get<OkHttpClient>())
                     .addConverterFactory(GsonConverterFactory.create())
@@ -41,7 +42,7 @@ private object LinkShortenerModule {
             }
             factory<LinkShortenerRepository> {
                 LinkShortenerRepositoryImpl(
-                    serviceApi = get()
+                    serviceApi = get(),
                 )
             }
         }

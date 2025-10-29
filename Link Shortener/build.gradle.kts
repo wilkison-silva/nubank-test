@@ -22,7 +22,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -58,9 +58,9 @@ dependencies {
 
     // Koin for Android
     implementation(libs.koin.androidx.compose)
-    //gson
+    // gson
     implementation(libs.gson)
-    //retrofit
+    // retrofit
     implementation(libs.retrofit)
     implementation(libs.logging.interceptor)
     implementation(libs.converter.gson)
