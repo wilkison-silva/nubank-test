@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -5,17 +7,15 @@ plugins {
 }
 
 android {
-    namespace = "br.com.wms.nubanktest"
-    compileSdk {
-        version = release(36)
-    }
+    namespace = BuildSettings.NAME_SPACE
+    compileSdk = BuildSettings.COMPILE_SDK
 
     defaultConfig {
-        applicationId = "br.com.wms.nubanktest"
-        minSdk = 21
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = BuildSettings.NAME_SPACE
+        minSdk = BuildSettings.MIN_SDK
+        targetSdk = BuildSettings.TARGET_SDK
+        versionCode = BuildSettings.VERSION_CODE
+        versionName = BuildSettings.VERSION_NAME
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -30,11 +30,13 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = BuildSettings.JAVA_VERSION
+        targetCompatibility = BuildSettings.JAVA_VERSION
     }
-    kotlinOptions {
-        jvmTarget = "11"
+    kotlin {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_11
+        }
     }
     buildFeatures {
         compose = true
@@ -60,5 +62,6 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
     implementation(libs.koin.androidx.compose)
+
     implementation(project(":link_shortener"))
 }
