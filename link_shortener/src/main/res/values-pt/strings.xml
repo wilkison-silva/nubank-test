@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="error_create_shortened_url">Erro ao criar url reduzida.</string>
+    <string name="insert_url">Digite a url aqui.</string>
+    <string name="label_ok">OK</string>
+
+</resources>

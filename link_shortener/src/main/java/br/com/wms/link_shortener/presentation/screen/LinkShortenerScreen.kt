@@ -25,7 +25,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -45,6 +47,7 @@ private fun LinkShortenerScreen(viewModel: LinkShortenerViewModel = koinViewMode
     val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
     val snackBarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     ObserveEvents(events = viewModel.events) { event ->
         when (event) {
@@ -57,7 +60,7 @@ private fun LinkShortenerScreen(viewModel: LinkShortenerViewModel = koinViewMode
             LinkShortenerViewModel.Event.ShortenerLinkError -> {
                 scope.launch {
                     snackBarHostState.showSnackbar(
-                        message = "Erro ao criar url reduzida!",
+                        message = context.getString(R.string.error_create_shortened_url),
                         duration = SnackbarDuration.Short,
                     )
                 }
@@ -81,7 +84,10 @@ private fun ScreenContent(
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         snackbarHost = {
-            SnackbarHost(snackBarHostState)
+            SnackbarHost(
+                snackBarHostState,
+                Modifier.padding(bottom = 24.dp)
+            )
         },
     ) { paddingValues ->
         Column(
@@ -112,7 +118,7 @@ private fun ScreenContent(
                         sendUserAction(LinkShortenerViewModel.Actions.ChangedInputText(text = it))
                     },
                     label = {
-                        Text(text = "Insira a url")
+                        Text(text = stringResource(R.string.insert_url))
                     },
                     singleLine = true,
                 )
@@ -125,7 +131,7 @@ private fun ScreenContent(
                 ) {
                     Text(
                         modifier = Modifier.padding(vertical = 4.dp),
-                        text = "OK",
+                        text = stringResource(R.string.label_ok),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
                     )

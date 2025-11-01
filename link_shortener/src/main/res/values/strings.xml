@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="error_create_shortened_url">Error while creating shortened url.</string>
+    <string name="insert_url">type url here.</string>
+    <string name="label_ok">OK</string>
+
+</resources>
