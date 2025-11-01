@@ -1,7 +1,7 @@
 package br.com.wms.link_shortener.presentation.screen.viewmodel
 
-import android.util.Patterns
 import androidx.annotation.StringRes
+import androidx.core.util.PatternsCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.wms.link_shortener.domain.usecase.create_alias.CreateAliasUseCase
@@ -89,7 +89,7 @@ internal class LinkShortenerViewModel(
 
     private fun isValidUrl(): Boolean {
         val typedUrl = _uiState.value.inputText
-        return Patterns.WEB_URL.matcher(typedUrl).matches()
+        return PatternsCompat.WEB_URL.matcher(typedUrl).matches()
     }
 
     sealed class Actions {
