@@ -1,6 +1,6 @@
 package br.com.wms.link_shortener.di
 
- import br.com.wms.link_shortener.BuildConfig
+import br.com.wms.link_shortener.BuildConfig
 import br.com.wms.link_shortener.data.repository.LinkShortenerRepositoryImpl
 import br.com.wms.link_shortener.data.repository.LinkShortenerServiceApi
 import br.com.wms.link_shortener.domain.repository.LinkShortenerRepository
@@ -8,8 +8,8 @@ import br.com.wms.link_shortener.domain.usecase.create_alias.CreateAliasUseCase
 import br.com.wms.link_shortener.domain.usecase.create_alias.CreateAliasUseCaseImpl
 import br.com.wms.link_shortener.presentation.screen.viewmodel.LinkShortenerViewModel
 import okhttp3.OkHttpClient
- import okhttp3.logging.HttpLoggingInterceptor
- import org.koin.core.context.loadKoinModules
+import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.core.context.loadKoinModules
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit

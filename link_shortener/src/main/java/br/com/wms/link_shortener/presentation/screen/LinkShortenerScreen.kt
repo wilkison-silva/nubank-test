@@ -29,9 +29,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.wms.link_shortener.R
+import br.com.wms.link_shortener.presentation.Dimens
 import br.com.wms.link_shortener.presentation.extensions.ObserveEvents
 import br.com.wms.link_shortener.presentation.screen.viewmodel.LinkShortenerViewModel
 import kotlinx.coroutines.launch
@@ -86,7 +86,7 @@ private fun ScreenContent(
         snackbarHost = {
             SnackbarHost(
                 snackBarHostState,
-                Modifier.padding(bottom = 24.dp)
+                Modifier.padding(bottom = Dimens.Space.space_24dp),
             )
         },
     ) { paddingValues ->
@@ -95,18 +95,18 @@ private fun ScreenContent(
                 Modifier
                     .padding(paddingValues)
                     .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+            verticalArrangement = Arrangement.spacedBy(Dimens.Space.space_12dp),
         ) {
             Row(
                 modifier =
                     Modifier
                         .padding(
-                            horizontal = 24.dp,
-                            vertical = 12.dp,
+                            horizontal = Dimens.Space.space_24dp,
+                            vertical = Dimens.Space.space_12dp,
                         ).fillMaxWidth()
                         .height(IntrinsicSize.Max),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(24.dp),
+                horizontalArrangement = Arrangement.spacedBy(Dimens.Space.space_24dp),
             ) {
                 OutlinedTextField(
                     modifier =
@@ -124,13 +124,13 @@ private fun ScreenContent(
                 )
                 Button(
                     modifier = Modifier,
-                    shape = RoundedCornerShape(size = 12.dp),
+                    shape = RoundedCornerShape(size = Dimens.Space.space_12dp),
                     onClick = {
                         sendUserAction(LinkShortenerViewModel.Actions.GenerateAliasClick)
                     },
                 ) {
                     Text(
-                        modifier = Modifier.padding(vertical = 4.dp),
+                        modifier = Modifier.padding(vertical = Dimens.Space.space_4dp),
                         text = stringResource(R.string.label_ok),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
@@ -140,7 +140,7 @@ private fun ScreenContent(
             LazyColumn(
                 modifier =
                     Modifier
-                        .padding(top = 12.dp)
+                        .padding(top = Dimens.Space.space_12dp)
                         .fillMaxSize(),
             ) {
                 items(
@@ -151,8 +151,8 @@ private fun ScreenContent(
                     itemContent = { index ->
                         Column {
                             Row(
-                                modifier = Modifier.padding(horizontal = 24.dp),
-                                horizontalArrangement = Arrangement.spacedBy(24.dp),
+                                modifier = Modifier.padding(horizontal = Dimens.Space.space_24dp),
+                                horizontalArrangement = Arrangement.spacedBy(Dimens.Space.space_24dp),
                             ) {
                                 Text(
                                     modifier = Modifier.weight(1f),
@@ -170,7 +170,7 @@ private fun ScreenContent(
                         Text(
                             modifier =
                                 Modifier
-                                    .padding(horizontal = 24.dp)
+                                    .padding(horizontal = Dimens.Space.space_24dp)
                                     .fillMaxWidth(),
                             text = uiState.aliasList[index].originalUrl,
                             style = MaterialTheme.typography.titleMedium,
@@ -179,7 +179,7 @@ private fun ScreenContent(
                         Text(
                             modifier =
                                 Modifier
-                                    .padding(horizontal = 24.dp)
+                                    .padding(horizontal = Dimens.Space.space_24dp)
                                     .fillMaxWidth(),
                             text = uiState.aliasList[index].short,
                             style = MaterialTheme.typography.titleSmall,
@@ -188,7 +188,7 @@ private fun ScreenContent(
                         if (index < uiState.aliasList.lastIndex) {
                             HorizontalDivider(
                                 modifier = Modifier.fillMaxWidth(),
-                                thickness = 0.dp,
+                                thickness = Dimens.Thickness.thickness_0dp,
                                 color = MaterialTheme.colorScheme.onSurface,
                             )
                         }
