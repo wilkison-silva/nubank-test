@@ -1,5 +1,6 @@
 package br.com.wms.link_shortener.presentation.screen.viewmodel
 
+import android.util.Patterns
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -40,6 +41,15 @@ internal class LinkShortenerViewModel(
     }
 
     private fun createAlias(url: String) {
+        if (isValidUrl()) {
+            _uiState.value = _uiState.value.copy(inputUrlError = false)
+            executeAliasCreation(url)
+        } else {
+            _uiState.value = _uiState.value.copy(inputUrlError = true)
+        }
+    }
+
+    private fun executeAliasCreation(url: String) {
         viewModelScope.launch {
             showLoading()
             when (val result = createAliasUseCase(url)) {
@@ -77,6 +87,11 @@ internal class LinkShortenerViewModel(
         }
     }
 
+    private fun isValidUrl(): Boolean {
+        val typedUrl = _uiState.value.inputText
+        return Patterns.WEB_URL.matcher(typedUrl).matches()
+    }
+
     sealed class Actions {
         data object GenerateAliasClick : Actions()
 
@@ -103,5 +118,8 @@ internal class LinkShortenerViewModel(
         val isLoading: Boolean = false,
         val inputText: String = "",
         val aliasList: List<ShortenedLinkView> = listOf(),
-    )
+        val inputUrlError: Boolean = false,
+    ) {
+        val isButtonEnabled = inputText.isNotBlank()
+    }
 }

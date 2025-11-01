@@ -142,9 +142,15 @@ private fun ShortenedUrlsList(uiState: LinkShortenerViewModel.UiState) {
                 index
             },
             itemContent = { index ->
-                Column {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(Dimens.Space.space_12dp),
+                ) {
                     Row(
-                        modifier = Modifier.padding(horizontal = Dimens.Space.space_24dp),
+                        modifier =
+                            Modifier.padding(
+                                horizontal = Dimens.Space.space_24dp,
+                                vertical = Dimens.Space.space_12dp,
+                            ),
                         horizontalArrangement = Arrangement.spacedBy(Dimens.Space.space_24dp),
                     ) {
                         Text(
@@ -180,7 +186,10 @@ private fun ShortenedUrlsList(uiState: LinkShortenerViewModel.UiState) {
                 )
                 if (index < uiState.aliasList.lastIndex) {
                     HorizontalDivider(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier =
+                            Modifier
+                                .padding(top = Dimens.Space.space_12dp)
+                                .fillMaxWidth(),
                         thickness = Dimens.Thickness.thickness_0dp,
                         color = MaterialTheme.colorScheme.onSurface,
                     )
@@ -219,9 +228,16 @@ private fun InputSections(
                 Text(text = stringResource(R.string.insert_url))
             },
             singleLine = true,
+            isError = uiState.inputUrlError,
+            supportingText = {
+                if (uiState.inputUrlError) {
+                    Text(text = stringResource(id = R.string.url_error))
+                }
+            },
         )
         Button(
             modifier = Modifier,
+            enabled = uiState.isButtonEnabled,
             shape = RoundedCornerShape(size = Dimens.Space.space_12dp),
             onClick = {
                 sendUserAction(LinkShortenerViewModel.Actions.GenerateAliasClick)
