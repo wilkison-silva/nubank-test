@@ -41,6 +41,7 @@ internal class LinkShortenerViewModel(
 
     private fun createAlias(url: String) {
         viewModelScope.launch {
+            showLoading()
             when (val result = createAliasUseCase(url)) {
                 CreateAliasUseCase.Result.Error -> {
                     sendEvent(Event.ShortenerLinkError)
@@ -58,7 +59,16 @@ internal class LinkShortenerViewModel(
                         )
                 }
             }
+            hideLoading()
         }
+    }
+
+    private fun showLoading() {
+        _uiState.value = _uiState.value.copy(isLoading = true)
+    }
+
+    private fun hideLoading() {
+        _uiState.value = _uiState.value.copy(isLoading = false)
     }
 
     private fun sendEvent(event: Event) {

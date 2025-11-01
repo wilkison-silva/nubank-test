@@ -11,5 +11,6 @@ object Dimens {
         val space_4dp = 4.dp
         val space_12dp = 12.dp
         val space_24dp = 24.dp
+        val space_32dp = 32.dp
     }
 }
