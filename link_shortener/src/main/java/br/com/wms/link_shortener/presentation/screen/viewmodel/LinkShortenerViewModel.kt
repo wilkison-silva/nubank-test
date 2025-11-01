@@ -1,6 +1,5 @@
 package br.com.wms.link_shortener.presentation.screen.viewmodel
 
-import androidx.annotation.StringRes
 import androidx.core.util.PatternsCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -105,12 +104,6 @@ internal class LinkShortenerViewModel(
     }
 
     sealed class Event {
-        data object OpenBrowser : Event()
-
-        data class AliasError(
-            @StringRes val errorMessage: Int,
-        ) : Event()
-
         data object ShortenerLinkError : Event()
     }
 

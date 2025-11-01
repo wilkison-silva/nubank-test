@@ -54,12 +54,6 @@ private fun LinkShortenerScreen(viewModel: LinkShortenerViewModel = koinViewMode
 
     ObserveEvents(events = viewModel.events) { event ->
         when (event) {
-            is LinkShortenerViewModel.Event.AliasError -> {
-            }
-
-            LinkShortenerViewModel.Event.OpenBrowser -> {
-            }
-
             LinkShortenerViewModel.Event.ShortenerLinkError -> {
                 scope.launch {
                     snackBarHostState.showSnackbar(
