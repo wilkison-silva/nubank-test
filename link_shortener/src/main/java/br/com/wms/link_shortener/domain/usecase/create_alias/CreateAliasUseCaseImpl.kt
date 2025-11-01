@@ -13,7 +13,6 @@ internal class CreateAliasUseCaseImpl(
             val shortenedLink = repository.createAlias(request).toShortenedLink()
             CreateAliasUseCase.Result.Success(shortenedLink)
         } catch (exception: Exception) {
-            exception.printStackTrace()
             CreateAliasUseCase.Result.Error
         }
 }
